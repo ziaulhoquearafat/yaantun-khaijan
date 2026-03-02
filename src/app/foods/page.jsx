@@ -1,4 +1,5 @@
 import FoodCard from "@/components/cards/FoodCard";
+import CartItems from "./CartItems";
 
 const getFoods = async () => {
   const res = await fetch(
@@ -20,10 +21,16 @@ const FoodsPage = async () => {
           Found
         </h2>
       </div>
-      <div className="grid grid-cols-4 my-5 gap-5">
-        {foods.map((food) => (
-          <FoodCard key={food.id} food={food}></FoodCard>
-        ))}
+      <div className="flex gap-5">
+        <div className=" flex-1 grid grid-cols-4 my-5 gap-5">
+          {foods.map((food) => (
+            <FoodCard key={food.id} food={food}></FoodCard>
+          ))}
+        </div>
+        <div className="w-62.5 border-2 rounded-xl p-4 border-gray-500">
+          <h2 className="text-2xl font-bold">Cart Items</h2> <hr />
+          <CartItems></CartItems>
+        </div>
       </div>
     </div>
   );

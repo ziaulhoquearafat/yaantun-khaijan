@@ -1,5 +1,6 @@
-import { Eye, ShoppingCart } from "lucide-react";
+import { Eye } from "lucide-react";
 import Link from "next/link";
+import CartButton from "../buttons/CartButton";
 
 const FoodCard = ({ food }) => {
   const { title, foodImg, price, category, id } = food;
@@ -27,10 +28,7 @@ const FoodCard = ({ food }) => {
 
         {/* Buttons */}
         <div className="flex gap-3 mt-6">
-          <button className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-medium text-white bg-orange-500 rounded-lg hover:bg-orange-600 transition-colors">
-            <ShoppingCart size={18} />
-            Add to Cart
-          </button>
+          <CartButton food={food}></CartButton>
 
           <Link
             href={`/foods/${id}`}
