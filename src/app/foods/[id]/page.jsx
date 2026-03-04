@@ -1,12 +1,22 @@
-import React from "react";
-
 export function generateStaticParams() {
   return [{ id: "52898" }, { id: "52955" }, { id: "52926" }];
 }
 
+export async function generateMetadata({ params }) {
+  const { id } = await params;
+  const product = await fetch(
+    `https://taxi-kitchen-api.vercel.app/api/v1/foods/${id}`,
+  ).then((res) => res.json());
+  const { details } = product;
+  console.log(details);
+  return {
+    title: details.title,
+  };
+}
+
 const getSingleFood = async (id) => {
   const res = await fetch(
-    `https://taxi-kitchen-api.vercel.app/api/v1/foods/${id}`
+    `https://taxi-kitchen-api.vercel.app/api/v1/foods/${id}`,
   );
 
   const data = await res.json();
