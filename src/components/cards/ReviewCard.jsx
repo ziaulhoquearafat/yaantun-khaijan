@@ -1,57 +1,72 @@
-import { Star, ThumbsUp } from "lucide-react";
+"use client";
+import { useState } from "react";
 
-const ReviewCard = ({ review }) => {
+export default function ReviewCard({ review }) {
+  const { user, email, photo, rating, review: text, likes, date } = review;
+
+  const [likeCount, setLikeCount] = useState(likes.length);
+  const [isLiked, setIsLiked] = useState(false);
+
+  const handleLike = () => {
+    setIsLiked(!isLiked);
+    setLikeCount((prev) => (isLiked ? prev - 1 : prev + 1));
+  };
+
   return (
-    <div className="max-w-2xl bg-white border border-gray-100 rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow">
-      {/* Header: User Info & Rating */}
-      <div className="flex justify-between items-start mb-4">
-        <div className="flex items-center gap-3">
-          <img
-            src={review.photo}
-            alt={review.user}
-            className="w-12 h-12 rounded-full object-cover border-2 border-orange-100"
-          />
-          <div>
-            <h4 className="font-bold text-gray-900">{review.user}</h4>
-            <p className="text-xs text-gray-400">
-              {new Date(review.date).toLocaleDateString()}
-            </p>
-          </div>
-        </div>
+    <div className="border rounded-xl p-5 shadow-md bg-white hover:shadow-lg transition">
+      {/* User Info */}
+      <div className="flex items-center gap-4">
+        <img
+          src={photo}
+          alt={user}
+          className="w-14 h-14 rounded-full object-cover border"
+        />
 
-        <div className="flex items-center bg-orange-50 px-2 py-1 rounded-lg">
-          {[...Array(5)].map((_, i) => (
-            <Star
-              key={i}
-              size={14}
-              className={`${i < review.rating ? "fill-orange-400 text-orange-400" : "text-gray-300"}`}
-            />
-          ))}
+        <div>
+          <h3 className="font-semibold text-lg">{user}</h3>
+          <p className="text-gray-600 text-sm">{email}</p>
         </div>
+      </div>
+
+      {/* Rating */}
+      <div className="flex items-center gap-1 mt-3 text-yellow-500">
+        {Array(rating)
+          .fill()
+          .map((_, i) => (
+            <span key={i}>★</span>
+          ))}
+        {Array(5 - rating)
+          .fill()
+          .map((_, i) => (
+            <span key={i} className="text-gray-300">
+              ★
+            </span>
+          ))}
       </div>
 
       {/* Review Text */}
-      <p className="text-gray-600 leading-relaxed mb-6 italic">
-        "{review.review}"
+      <p className="mt-3 text-gray-700 leading-relaxed">{text}</p>
+
+      {/* Date */}
+      <p className="text-gray-400 text-sm mt-3">
+        {new Date(date).toLocaleDateString("en-US")}
       </p>
 
-      {/* Footer: Like Button */}
-      <div className="flex items-center justify-between border-t border-gray-50 pt-4">
-        <button className="flex items-center gap-2 text-gray-500 hover:text-orange-500 transition-colors group">
-          <div className="p-2 rounded-full group-hover:bg-orange-50">
-            <ThumbsUp size={18} />
-          </div>
-          <span className="text-sm font-medium">
-            {review.likes.length} Likes
-          </span>
+      {/* Like Button */}
+      <div className="mt-4 flex items-center gap-3">
+        <button
+          onClick={handleLike}
+          className={`px-4 py-2 rounded-lg text-sm font-medium border transition ${
+            isLiked
+              ? "bg-blue-600 text-white border-blue-600"
+              : "bg-gray-50 hover:bg-gray-100 border-gray-300"
+          }`}
+        >
+          {isLiked ? "Liked ❤️" : "Like 🤍"}
         </button>
 
-        <button className="text-sm text-gray-400 hover:underline">
-          Report
-        </button>
+        <span className="text-sm text-gray-600">{likeCount} likes</span>
       </div>
     </div>
   );
-};
-
-export default ReviewCard;
+}

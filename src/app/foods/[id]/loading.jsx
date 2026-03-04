@@ -1,30 +1,26 @@
-const FoodDetailsSkeleton = () => {
+export default function Loading() {
   return (
-    <div className="min-h-screen bg-gray-50 py-10 px-4 animate-pulse">
-      <div className="max-w-5xl mx-auto bg-white rounded-3xl p-6 md:p-10 shadow-sm border border-gray-100">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {/* Image Skeleton */}
-          <div className="bg-gray-200 h-[400px] rounded-2xl"></div>
+    <div className="max-w-3xl mx-auto p-6 animate-pulse">
+      {/* Image skeleton */}
+      <div className="w-full h-72 bg-gray-300 rounded-xl"></div>
 
-          {/* Content Skeleton */}
-          <div className="flex flex-col justify-center space-y-6">
-            <div className="space-y-3">
-              <div className="h-4 bg-gray-200 rounded w-24"></div>
-              <div className="h-10 bg-gray-200 rounded w-3/4"></div>
-              <div className="h-10 bg-gray-200 rounded w-1/2"></div>
-            </div>
+      {/* Title */}
+      <div className="h-6 bg-gray-300 rounded w-2/3 mt-5"></div>
 
-            <div className="h-12 bg-gray-200 rounded w-1/3"></div>
+      {/* Chips */}
+      <div className="flex gap-3 mt-3">
+        <div className="h-4 bg-gray-300 rounded w-20"></div>
+        <div className="h-4 bg-gray-300 rounded w-16"></div>
+      </div>
 
-            <div className="space-y-3 pt-4">
-              <div className="h-14 bg-gray-200 rounded-xl w-full"></div>
-              <div className="h-14 bg-gray-200 rounded-xl w-full"></div>
-            </div>
-          </div>
-        </div>
+      {/* Price */}
+      <div className="h-6 bg-gray-300 rounded w-24 mt-4"></div>
+
+      {/* Buttons */}
+      <div className="flex gap-4 mt-6">
+        <div className="flex-1 h-12 bg-gray-300 rounded-lg"></div>
+        <div className="flex-1 h-12 bg-gray-300 rounded-lg"></div>
       </div>
     </div>
   );
-};
-
-export default FoodDetailsSkeleton;
+}

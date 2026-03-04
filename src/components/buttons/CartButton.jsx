@@ -1,24 +1,22 @@
 "use client";
-
-import { cartContext } from "@/context/CartProvider";
-import { ShoppingCart } from "lucide-react";
-import { use, useState } from "react";
+import { CartContext } from "@/context/CartProvider";
+import React, { use, useState } from "react";
 
 const CartButton = ({ food }) => {
-  const [incart, setInCart] = useState(false);
-  const { addToCart } = use(cartContext);
-  const handleAdd2Cart = () => {
+  const [inCart, setIncart] = useState(false);
+  const { addToCart } = use(CartContext);
+  const handleadd2Cart = () => {
     addToCart(food);
-    setInCart(true);
+    setIncart(true);
   };
+
   return (
     <button
-      onClick={handleAdd2Cart}
-      disabled={incart}
-      className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-medium text-white cursor-pointer bg-orange-500 rounded-lg hover:bg-orange-600 transition-colors disabled:bg-gray-200 disabled:text-gray-500"
+      onClick={handleadd2Cart}
+      disabled={inCart}
+      className="flex-1 bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 disabled:bg-gray-100 disabled:text-gray-400"
     >
-      <ShoppingCart size={18} />
-      {incart ? "Added" : "Add To Cart"}
+      {inCart ? "Added" : "Add to Cart"}
     </button>
   );
 };

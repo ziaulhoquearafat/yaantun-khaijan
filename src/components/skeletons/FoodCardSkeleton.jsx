@@ -1,25 +1,18 @@
-const FoodCardSkeleton = () => {
+export function FoodCardSkeleton() {
   return (
-    <div className="max-w-sm bg-white border border-gray-200 rounded-2xl shadow-sm overflow-hidden animate-pulse">
-      {/* Image Placeholder */}
-      <div className="w-full h-56 bg-gray-200"></div>
+    <div className="border rounded-xl p-4 shadow animate-pulse">
+      <div className="w-full h-44 bg-gray-300 rounded-lg"></div>
 
-      {/* Content Placeholder */}
-      <div className="p-5">
-        {/* Title Placeholder */}
-        <div className="h-6 bg-gray-200 rounded-md w-3/4 mb-4"></div>
+      <div className="mt-3 space-y-2">
+        <div className="h-4 bg-gray-300 rounded w-3/4"></div>
+        <div className="h-3 bg-gray-300 rounded w-1/2"></div>
+        <div className="h-6 bg-gray-300 rounded w-20 mt-2"></div>
 
-        {/* Price Placeholder */}
-        <div className="h-8 bg-gray-200 rounded-md w-1/4 mt-4"></div>
-
-        {/* Buttons Placeholder */}
-        <div className="flex gap-3 mt-6">
-          <div className="h-10 bg-gray-200 rounded-lg flex-1"></div>
-          <div className="h-10 bg-gray-200 rounded-lg w-12"></div>
+        <div className="flex gap-3 mt-4">
+          <div className="flex-1 h-10 bg-gray-300 rounded-lg"></div>
+          <div className="flex-1 h-10 bg-gray-300 rounded-lg"></div>
         </div>
       </div>
     </div>
   );
-};
-
-export default FoodCardSkeleton;
+}

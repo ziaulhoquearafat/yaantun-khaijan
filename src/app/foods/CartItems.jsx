@@ -1,11 +1,10 @@
 "use client";
-
-import { cartContext } from "@/context/CartProvider";
-import { use } from "react";
+import { CartContext } from "@/context/CartProvider";
+import React, { use } from "react";
 
 const CartItems = () => {
-  const { cart } = use(cartContext);
-  return <div>{cart.length} items Added</div>;
+  const { cart } = use(CartContext);
+  return <div>{cart.length} Items Added</div>;
 };
 
 export default CartItems;
