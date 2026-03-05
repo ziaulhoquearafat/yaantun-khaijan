@@ -1,5 +1,6 @@
 import CartProvider from "@/context/CartProvider";
 import { Geist, Geist_Mono } from "next/font/google";
+import Image from "next/image";
 import Link from "next/link";
 import "./globals.css";
 
@@ -29,7 +30,14 @@ export default function RootLayout({ children }) {
       >
         <header className="px-5 py-2 flex  items-center justify-between gap-5 bg-stone-800">
           <Link href="/">
-            <img src="/logo.png" alt="" className="w-[120px]" />
+            {/* <img src="/logo.png" alt="" className="w-[120px]" /> */}
+            <Image
+              width={120}
+              height={50}
+              src="/logo.png"
+              alt=""
+              className="w-[120px]"
+            />
           </Link>
 
           <div className="space-x-5">
