@@ -1,5 +1,5 @@
 import CartProvider from "@/context/CartProvider";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Poppins } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 import "./globals.css";
@@ -14,6 +14,11 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const poppins = Poppins({
+  weight: ["400", "500", "600", "700", "800"],
+  subsets: ["latin"],
+});
+
 export const metadata = {
   title: {
     template: "%s | Yantun Khaijan",
@@ -25,9 +30,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${poppins.className} antialiased`}>
         <header className="px-5 py-2 flex  items-center justify-between gap-5 bg-stone-800">
           <Link href="/">
             {/* <img src="/logo.png" alt="" className="w-[120px]" /> */}

@@ -1,11 +1,16 @@
 "use client";
 import ReviewCard from "@/components/cards/ReviewCard";
+import { Anek_Bangla } from "next/font/google";
 import { useEffect, useState } from "react";
 import ReviewLoading from "./ReviewLoading";
 
 export const metadata = {
   title: "Satisfied Client",
 };
+
+const anek = Anek_Bangla({
+  weight: ["400", "500", "600", "700", "800"],
+});
 
 const ReviewsPage = () => {
   const [reviews, setReviews] = useState([]);
@@ -23,7 +28,7 @@ const ReviewsPage = () => {
     return <ReviewLoading></ReviewLoading>;
   }
   return (
-    <div>
+    <div className={anek.className}>
       <h2 className="text-4xl font-bold">
         Total <span className="text-yellow-500">{reviews.length} </span> Reviews
         Found
