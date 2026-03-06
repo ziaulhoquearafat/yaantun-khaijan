@@ -1,9 +1,11 @@
 export const dynamic = "force-dynamic";
+import { connect } from "@/app/lib/dbConnect";
 
-import { feedback } from "../route";
+const feedbackCollections = connect("customer_feedbacks");
 
 export async function GET(request) {
-  return Response.json(feedback);
+  const result = await feedbackCollections.find().toArray();
+  return Response.json(result);
 }
 
 export async function POST(request) {
@@ -16,11 +18,7 @@ export async function POST(request) {
     });
   }
 
-  const newFeedback = { message, id: feedback.length + 1 };
-  feedback.push(newFeedback);
-
-  return Response.json({
-    acknowledgement: true,
-    insertedId: newFeedback.id,
-  });
+  const newFeedback = { message, date: new Date().toISOString() };
+  const result = await feedbackCollections.insertOne(newFeedback);
+  return Response.json(result);
 }

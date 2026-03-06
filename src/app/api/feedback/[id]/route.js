@@ -1,9 +1,14 @@
-import { feedback } from "../../route";
+import { connect } from "@/app/lib/dbConnect";
+import { ObjectId } from "mongodb";
 
 export async function GET(request, { params }) {
   const { id } = await params;
 
-  const singlFeedback = feedback.find((fd) => fd.id == id) || {};
+  const feedbackCollections = await connect("customer_feedbacks");
 
-  return Response.json(singlFeedback);
+  const query = { _id: new ObjectId(id) };
+
+  const result = await feedbackCollections.findOne(query);
+
+  return Response.json(result);
 }
